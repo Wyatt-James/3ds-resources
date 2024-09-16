@@ -1,0 +1,151 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            // Runs 'make clean' through Docker.
+            "label": "build_clean",
+            "command": "bash",
+            "args": [
+                "build_scripts/build_clean.sh"
+            ],
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            // Builds an executable with a debugging preset. Saves GCC's intermediate assembly and object files for use with GDB.
+            "label": "build_debug",
+            "command": "bash",
+            "args": [
+                "build_scripts/build_generic.sh",
+                "build_flags.txt",
+                "DEBUG",
+                "docker run --rm -v $(pwd):/game_name wyatt_james/game_name:temp make --jobs 8 VERSION=us OPT_FLAGS=\"-save-temps=obj -ggdb -Og\""
+            ],
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            // Builds an executable with a completely unoptimized debugging preset. Saves GCC's intermediate assembly and object files for use with GDB.
+            "label": "build_raw_debug",
+            "command": "bash",
+            "args": [
+                "build_scripts/build_generic.sh",
+                "build_flags.txt",
+                "RAW_DEBUG",
+                "docker run --rm -v $(pwd):/game_name wyatt_james/game_name:temp make --jobs 8 VERSION=us OPT_FLAGS=\"-save-temps=obj -ggdb -O0\""
+            ],
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            // Builds an executable with an O3-optimized preset. Saves GCC's intermediate assembly and object files for use with GDB.
+            "label": "build_optimized_debug",
+            "command": "bash",
+            "args": [
+                "build_scripts/build_generic.sh",
+                "build_flags.txt",
+                "OPTIMIZED_DEBUG",
+                "docker run --rm -v $(pwd):/game_name wyatt_james/game_name:temp make --jobs 8 VERSION=us OPT_FLAGS=\"-save-temps=obj -ggdb -O3\""
+            ],
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            // Builds an executable with a release preset.
+            "label": "build_release",
+            "command": "bash",
+            "args": [
+                "build_scripts/build_generic.sh",
+                "build_flags.txt",
+                "RELEASE",
+                "docker run --rm -v $(pwd):/game_name wyatt_james/game_name:temp make --jobs 8 VERSION=us"
+            ],
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            // Builds an executable with a size-minimized optimized preset.
+            "label": "build_small",
+            "command": "bash",
+            "args": [
+                "build_scripts/build_generic.sh",
+                "build_flags.txt",
+                "SMALL",
+                "docker run --rm -v $(pwd):/game_name wyatt_james/game_name:temp make --jobs 8 VERSION=us OPT_FLAGS=\"-Os\""
+            ],
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            // Builds an executable with an optimized debugging preset, redirecting stdout and stderr to the build_logs directory. Saves GCC's intermediate assembly and object files for use with GDB.
+            "label": "build_log",
+            "command": "bash",
+            "args": [
+                "build_scripts/build_generic.sh",
+                "build_flags.txt",
+                "OPTIMIZED_DEBUG",
+                "docker run --rm -v $(pwd):/game_name wyatt_james/game_name:temp make --jobs 8 VERSION=us OPT_FLAGS=\"-save-temps=obj -ggdb -O3\" 2>build_logs/stderr.txt 1>build_logs/stdout.txt"
+            ],
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            // Sends the executable to the console.
+            "label": "remote_send",
+            "command": "bash",
+            "args": [
+                "build_scripts/remote_send.sh",
+                "0"
+            ],
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            }
+        },
+        {
+            // Sends the executable to the console with a delay of 2. Used by debugger launch configurations.
+            "label": "remote_send_and_delay",
+            "command": "bash",
+            "args": [
+                "build_scripts/remote_send.sh",
+                "2"
+            ],
+            "type": "shell",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            }
+        }
+    ]
+}

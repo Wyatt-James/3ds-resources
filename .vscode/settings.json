@@ -1,0 +1,15 @@
+{
+    // Disassembly explorer
+    // These settings enable dseight's disassembly explorer to display GCC's intermediate assembly files.
+    // This is much better than binary parsing, as less needs to be loaded, and no disassembly is performed.
+    // "disasexpl.useBinaryParsing": true,
+    "disasexpl.associations": {
+        // arm-linux-gnueabi-objdump -d build/executable.elf -l > disassembly.s
+        // "**/*.c": "${workspaceFolder}/disassembly.s",
+        "**/*.c": "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}.s",
+        "**/*.cpp": "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}.s"
+    },
+
+    "C_Cpp.default.compilerPath": "/opt/devkitpro/devkitARM/bin/arm-none-eabi-gcc",
+    "editor.insertSpaces": true
+}
