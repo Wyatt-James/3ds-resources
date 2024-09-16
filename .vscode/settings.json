@@ -10,6 +10,6 @@
         "**/*.cpp": "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}.s"
     },
 
-    "C_Cpp.default.compilerPath": "/opt/devkitpro/devkitARM/bin/arm-none-eabi-gcc",
-    "editor.insertSpaces": true
+    "C_Cpp.default.compilerPath": "/opt/devkitpro/devkitARM/bin/arm-none-eabi-gcc", // Helps with IntelliSense
+    "editor.insertSpaces": true // Required for Makefile editing
 }
