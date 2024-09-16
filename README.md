@@ -1,5 +1,5 @@
-# 3ds-toolchain
-An N3DS toolchain targeting VSCode + WSL2 running Ubuntu 20.04 LTS. It also contains settings for dseight's *Disassembly Explorer* extension.
+# 3ds-resources
+Development resources for the 3DS and a toolchain targeting VSCode + WSL2 running Ubuntu 20.04 LTS. It also contains settings for dseight's *Disassembly Explorer* extension.
 
 ## Project Structure
 - Build scripts are housed within the `build_scripts` directory. They can call each-other.
