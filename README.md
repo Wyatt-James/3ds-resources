@@ -12,3 +12,6 @@ An N3DS toolchain targeting VSCode + WSL2 running Ubuntu 20.04 LTS. It also cont
 ## How To Use
 - Launch GDB debugger sessions from the Run and Debug menu.
 - Run the default build task with `ctrl` + `shift` + `b` or execute others from the command palette at the top of the window.
+
+## Documentation
+- See [3DS Development Resources.md](/3DS%20Development%20Resources.md)
