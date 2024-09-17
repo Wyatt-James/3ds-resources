@@ -1,6 +1,6 @@
 # 3DS Development Resources
 Written by [Wyatt-James](https://github.com/Wyatt-James/)
-The latest version can be found [here.](https://github.com/Wyatt-James/3ds-resources) You are currently reading version `1.1` published on `September 16, 2024.`
+The latest version can be found [here.](https://github.com/Wyatt-James/3ds-resources) You are currently reading version `1.2` published on `September 17, 2024.`
 
 This is a document containing various bits of knowledge and resources for 3DS development. I gained this knowledge through research and experimentation, and I cannot stress how important the latter is. Take some code, tinker with it, and see where you end up.
 
@@ -87,7 +87,7 @@ Additionally, the framebuffer-to-screen swap is handled asynchronously once the 
 
 The CPU is an ARM11MPCore, featuring two identical CPU cores running at 268MHz. The CPU implements the ARMv6k architecture with some extensions, such as a VPU for floating-point math. These cores each have a small L1 cache, with separate data and instruction caches. Cache coherency is guaranteed by a snoop control unit. The 3DS features 128MB of general-purpose memory, though 64MB is reserved for the OS. A special mode can be specified in the CIA file granting 96MB to the game, with some caveats.
 
-The New 3DS features four cores running at 804MHz, with an L2 cache shared by all cores. It also faetures 256MB of main memory, with 124/176 available to the game via the same mechanisms as the old 3DS.
+The New 3DS features four cores running at 804MHz, with an L2 cache shared by all cores. It also features 256MB of main memory, with 124/176 available to the game via the same mechanisms as the old 3DS.
 
 This is a 32-bit CPU with a 64-bit data bus and some 64-bit instructions. The VPU also supports 32-bit and 64-bit floats. Other notable features include:
 - Dynamic branch prediction
@@ -137,7 +137,7 @@ Shaders have inputs, outputs, uniforms, and constants.
 - Outputs are data written by the shader. All declared outputs should be written.
 - Uniforms are data that can be modified at-will by the CPU. They hold the same value for all concurrent invocations of the shader program.
 - Constants are actually just special uniforms handled by Citro3D. Unfortunately, they are also slow, as they are re-sent when switching DVLEs within a single DVLB. This may be refined in the future, but for now, you should just stick to using uniforms for a slight performance improvement and GPU command reduction.
-  - Due to a bug in Citro3D or libctru, one float constant is required per-uniform.
+  - Due to a bug in Citro3D or libctru, one float constant is required per-DVLE.
   - There is another reason to use uniforms over constants: constants are not shared. This means that constants are NEVER valid to use inside of shader source files without DVLEs, since they will never be allocated registers in the shared uniform space. Really, stick to uniforms.
   
 Most uniforms will be 24-bit floating-point uniforms. Other types exist, but their usage is very limited. See Picasso's documentation and the 3DBrew Wiki's page on the PICA200's shader instruction set.
