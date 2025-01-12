@@ -137,7 +137,6 @@ Shaders have inputs, outputs, uniforms, and constants.
 - Outputs are data written by the shader. All declared outputs should be written.
 - Uniforms are data that can be modified at-will by the CPU. They hold the same value for all concurrent invocations of the shader program.
 - Constants are actually just special uniforms handled by Citro3D. Unfortunately, they are also slow, as they are re-sent when switching DVLEs within a single DVLB. This may be refined in the future, but for now, you should just stick to using uniforms for a slight performance improvement and GPU command reduction.
-  - Due to a bug in Citro3D or libctru, one float constant is required per-DVLE.
   - There is another reason to use uniforms over constants: constants are not shared. This means that constants are NEVER valid to use inside of shader source files without DVLEs, since they will never be allocated registers in the shared uniform space. Really, stick to uniforms.
   
 Most uniforms will be 24-bit floating-point uniforms. Other types exist, but their usage is very limited. See Picasso's documentation and the 3DBrew Wiki's page on the PICA200's shader instruction set.
