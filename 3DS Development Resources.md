@@ -120,7 +120,7 @@ The DSP supports raw PCM data and ADPCM-encoded data, though it should be noted 
 
 The GPU features fully programmable vertex and geometry shaders and a fixed-function fragment (pixel) pipeline. Vertex and geometry shaders are programmed in a bespoke assembly language and compiled by Picasso (see below). The fragment pipeline is controlled by various registers, sporting a variety of interesting hardware features. See Copetti's 3DS Article and the WIP Citro3D Docs for more information.
 
-The GPU also holds 6MB of dedicated video memory (10MB on New 3DS, though support seems broken in libctru), which is enough to hold full-size double-buffered display buffers. Textures can also be stored here, but support in Citro3D seems broken at the moment.
+The GPU also holds 6MB of dedicated video memory, which is enough to hold full-size double-buffered display buffers. Textures can also be stored here, but support in Citro3D seems broken at the moment.
 
 The GPU is a beefy boi and will almost never be a bottleneck in emulation, even when running in 800x480 mode. You should use VRAM display buffers for slightly improved performance, though these are incompatible with the print console; when using a console, linear memory must be used.
 
