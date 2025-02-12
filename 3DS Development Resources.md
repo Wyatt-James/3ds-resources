@@ -76,7 +76,7 @@ Citro3D uses a very particular frame generation logic loop:
 1. System and Game logic run.
 2. The game calls C3D_FrameBegin.
    - The main thread is stalled until the GPU command queue is free.
-   - "Vsync" is provided. It isn't a true vsync, which is essentially impossible on 3DS, but instead a simple frame rate limiter. It is, however, tied to the display vertical blank and thus will not drift out of sync.
+   - A frame rate limiter is provided. It is tied to the display's vertical blank and thus will not drift out of sync.
 3. The game produces GPU commands (via C3D calls), which fill a finite queue.
 4. The game calls C3D_FrameEnd.
    - The command queue is passed to the GPU and rendering begins.
